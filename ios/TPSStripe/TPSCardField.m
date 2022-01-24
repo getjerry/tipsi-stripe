@@ -199,7 +199,8 @@
                         @"number": _paymentCardTextField.cardParams.number?:@"",
                         @"expMonth": _paymentCardTextField.cardParams.expMonth?:NSNull.null,
                         @"expYear": _paymentCardTextField.cardParams.expYear?:NSNull.null,
-                        @"cvc": _paymentCardTextField.cardParams.cvc?:@""
+                        @"cvc": _paymentCardTextField.cardParams.cvc?:@"",
+                        @"postalCode": _paymentCardTextField.postalCode?:@""
                         }
                 });
 }
