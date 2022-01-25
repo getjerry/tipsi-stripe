@@ -200,7 +200,7 @@
                         @"expMonth": _paymentCardTextField.cardParams.expMonth?:NSNull.null,
                         @"expYear": _paymentCardTextField.cardParams.expYear?:NSNull.null,
                         @"cvc": _paymentCardTextField.cardParams.cvc?:@"",
-                        @"postalCode": _paymentCardTextField.postalCode?:@""
+                        @"zip": _paymentCardTextField.postalCode?:@""
                         }
                 });
 }

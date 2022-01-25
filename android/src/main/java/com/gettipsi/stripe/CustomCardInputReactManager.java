@@ -30,7 +30,7 @@ public class CustomCardInputReactManager extends SimpleViewManager<CreditCardFor
   private static final String EXP_MONTH = "expMonth";
   private static final String EXP_YEAR = "expYear";
   private static final String CCV = "cvc";
-  private static final String POSTAL_CODE = "postalCode";
+  private static final String ZIP = "zip";
 
   private ThemedReactContext reactContext;
   private WritableMap currentParams;
@@ -181,22 +181,24 @@ public class CustomCardInputReactManager extends SimpleViewManager<CreditCardFor
       }
     });
 
-    ccZipEdit.addTextChangedListener(new TextWatcher() {
-      @Override
-      public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-      }
-
-      @Override
-      public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        Log.d(TAG, "onTextChanged: Zip = "+charSequence);
-        currentZip = charSequence.toString();
-        postEvent(view);
-      }
-
-      @Override
-      public void afterTextChanged(Editable editable) {
-      }
-    });
+    if (ccZipEdit != null) {
+      ccZipEdit.addTextChangedListener(new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
+  
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+          Log.d(TAG, "onTextChanged: Zip = "+charSequence);
+          currentZip = charSequence.toString();
+          postEvent(view);
+        }
+  
+        @Override
+        public void afterTextChanged(Editable editable) {
+        }
+      });
+    } 
   }
 
   private void postEvent(CreditCardForm view){
@@ -205,7 +207,7 @@ public class CustomCardInputReactManager extends SimpleViewManager<CreditCardFor
     currentParams.putInt(EXP_MONTH, currentMonth);
     currentParams.putInt(EXP_YEAR, currentYear);
     currentParams.putString(CCV, currentCCV);
-    currentParams.putString(POSTAL_CODE, currentZip);
+    currentParams.putString(ZIP, currentZip);
     reactContext.getNativeModule(UIManagerModule.class)
       .getEventDispatcher().dispatchEvent(
       new CreditCardFormOnChangeEvent(view.getId(), currentParams, view.isCreditCardValid()));
